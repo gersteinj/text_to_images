@@ -18,7 +18,7 @@ void setup() {
 void draw() {
   background(255);
   text(lines[count], width/2, height/2 + sizeOfText/2);
-  saveFrame("text-###");
+  saveFrame("text-####.png");
   count++;
   if (count >= lines.length) {
     exit();
