@@ -1,3 +1,15 @@
+//Change values to change settings
+//Height of text in pixels
+int sizeOfText = 60;
+
+//Size of image output
+int graphicW = 300;
+int graphicH = 200;
+
+color textColor = color(0, 80, 50);
+color bgColor = color(255);
+
+
 //Create array to store word list
 String lines[];
 //Index variable
@@ -8,17 +20,10 @@ boolean active = false;
 //Declare PGraphic object 
 PGraphics graphic;
 
-//Height of text in pixels
-int sizeOfText = 60;
 
-//Size of image output
-int graphicW = 300;
-int graphicH = 200;
+
 
 void setup() {
-  //size of canvas is not currently relevant
-  //size(displayWidth, displayHeight); 
-
   //Select a file from dialog box
   selectInput("Select a word list. It should be a .txt file.", "fileSelected");
 
@@ -33,8 +38,8 @@ void draw() {
     graphic.beginDraw();
 
     //drawing settings
-    graphic.background(255);
-    graphic.fill(0);
+    graphic.background(bgColor);
+    graphic.fill(textColor);
     graphic.textSize(sizeOfText);
     graphic.textAlign(CENTER);
 
