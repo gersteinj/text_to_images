@@ -24,6 +24,8 @@ PGraphics graphic;
 
 
 void setup() {
+  size(800, 600);
+
   //Select a file from dialog box
   selectInput("Select a word list. It should be a .txt file.", "fileSelected");
 
@@ -69,7 +71,8 @@ void fileSelected(File selection) {
     println("No file chosen");
   } else {
     //if a file is chosen, load the word list into the array
-    lines = loadStrings("wordlist.txt");
+    String file = selection.getAbsolutePath();
+    lines = loadStrings(file);
     //set active to true so the main program can run
     active = true;
   }
