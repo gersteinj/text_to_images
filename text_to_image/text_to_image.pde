@@ -30,6 +30,15 @@ void draw() {
   //Display menus
   if (!active) {
     rect(20, 20, 100, 100);
+    background(255, 255, 255);
+    fill(0);
+    textSize(125);
+    textAlign(CENTER);
+    text("Text to Image", width/2, 150);
+    textSize(50);
+    text("A digital magnetic poetry tool", width/2, 225);
+    textSize(25);
+    text("Created by Jackie Gerstein -- gersteinj@gmail.com -- @gersteinj", width/2, 275);
   }
   //Don't run until a file is selected
   if (active) {
