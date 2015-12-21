@@ -1,3 +1,5 @@
+import controlP5.*;
+
 //Change values to change settings
 //Height of text in pixels
 int sizeOfText = 60;
@@ -20,20 +22,15 @@ boolean active = false;
 //Declare PGraphic object 
 PGraphics graphic;
 
-
-
-
 void setup() {
-  size(800, 600);
-
-  //Select a file from dialog box
-  selectInput("Select a word list. It should be a .txt file.", "fileSelected");
-
-  //initialize the PGraphic object
-  graphic = createGraphics(graphicW, graphicH);
+  size(1024, 768);
 }
 
 void draw() {
+  //Display menus
+  if (!active) {
+    rect(20, 20, 100, 100);
+  }
   //Don't run until a file is selected
   if (active) {
     //start PGraphic
@@ -75,5 +72,27 @@ void fileSelected(File selection) {
     lines = loadStrings(file);
     //set active to true so the main program can run
     active = true;
+  }
+}
+
+void goToFileSelect() {
+  //Select a file from dialog box
+  selectInput("Select a word list. It should be a .txt file.", "fileSelected");
+
+  //initialize the PGraphic object
+  graphic = createGraphics(graphicW, graphicH);
+}
+
+boolean checkStartButton() {
+  if (mouseX > 20 && mouseX < 120 && mouseY > 20 && mouseY < 120) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+void mousePressed() {
+  if (checkStartButton()) {
+    goToFileSelect();
   }
 }
