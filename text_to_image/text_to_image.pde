@@ -6,8 +6,9 @@ int sizeOfText = 60;
 int graphicW = 300;
 int graphicH = 200;
 
-color textColor = color(0, 80, 50);
-color bgColor = color(255);
+//Colors of text and background, given as (red, green, blue). Default is black text on white background
+color textColor = color(0, 0, 0);
+color bgColor = color(255, 255, 255);
 
 
 //Create array to store word list
