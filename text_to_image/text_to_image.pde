@@ -1,4 +1,18 @@
+///////////////////////////////////////////////////
+//                                               //
+// Text to Images created by Jacqueline Gerstein //
+//   GersteinJ@gmail.com            @gersteinj   //
+//                                               //
+///////////////////////////////////////////////////
+
+
 //Change values to change settings
+
+//Replace "text" with whatever you want the name of the files to be
+//Make sure your filename is in quotes
+//Files will be named in the following format: name + number + .png
+String fileName = "text";
+
 //Height of text in pixels
 int sizeOfText = 60;
 
@@ -53,7 +67,7 @@ void draw() {
     graphic.endDraw();
 
     //save the image
-    graphic.save("text"+count+".png");
+    graphic.save(fileName+nf(count, 4)+".png");
 
     //increase index
     count++;
