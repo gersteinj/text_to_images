@@ -3,7 +3,7 @@ import svgwrite
 # Create relevant variables
 imageW = 500
 imageH = 300
-textSize = 100
+textSize = 75
 
 # TODO: Load strings from a list
 
@@ -18,8 +18,8 @@ dwg = svgwrite.Drawing('testfile.svg', (imageW, imageH), profile = 'tiny')
 dwg.add(dwg.rect(insert = (0,0), size = ('100%', '100%'), fill = 'purple'))
 
 # TODO: Draw text
-dwg.add(dwg.text("I AM TEXT",
-	insert = (imageW/2, imageH/2),
+dwg.add(dwg.text("Hello world",
+	insert = (imageW/2, imageH/2 + textSize*.25	),
 	text_anchor = 'middle',
 	fill = 'white',
 	font_size = str(textSize),
