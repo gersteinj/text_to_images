@@ -1,10 +1,11 @@
 import svgwrite
 
 # Create relevant variables
-imageW = 500
+imageW = 300
 imageH = 300
 textSize = 75
 count = 1
+letterSize = textSize*.75
 
 # Load strings from a list
 wordList = open('wordlist.txt')
@@ -14,7 +15,10 @@ lines = wordList.readlines()
 for line in lines:
 	print(line)
 
-	# TODO: Set size variables based on length of word
+	# Set size variables based on length of word
+	# TODO: Can I figure out a way to do it based on the actual width of the word?
+	print(len(line))
+	imageW = len(line) * letterSize
 
 	# create an SVG file
 	dwg = svgwrite.Drawing(str(line.rstrip())+'.svg', (imageW, imageH), profile = 'tiny')
