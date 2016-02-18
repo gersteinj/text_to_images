@@ -9,7 +9,8 @@ letterSize = textSize*.75
 
 # Load strings from a list
 wordList = open('wordlist.txt')
-lines = wordList.readlines()
+words = wordList.read()
+lines = words.splitlines()
 
 # Grab the next string
 for line in lines:
@@ -21,12 +22,12 @@ for line in lines:
 	imageW = len(line) * letterSize
 
 	# create an SVG file
-	dwg = svgwrite.Drawing(str(line.rstrip())+'.svg', (imageW, imageH), profile = 'tiny')
+	dwg = svgwrite.Drawing(str(line)+'.svg', (imageW, imageH), profile = 'tiny')
 
 	# Draw background
 	dwg.add(dwg.rect(insert = (0,0), size = ('100%', '100%'), fill = 'purple'))
 
-	# TODO: Draw text
+	# Draw text
 	dwg.add(dwg.text(line,
 		insert = (imageW/2, imageH/2 + textSize*.25	),
 		text_anchor = 'middle',
