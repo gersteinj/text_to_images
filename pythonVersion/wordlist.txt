@@ -1,14 +1,8 @@
-So
-long
-and
-thanks
-for
-all
-the
-fish.
-So sad
-that it
-should
-come
-to
-this.
+Hello world
+How are you?
+Do not break
+Don't
+1
+123
+3.14
+3/4
