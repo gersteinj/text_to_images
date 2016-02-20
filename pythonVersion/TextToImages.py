@@ -35,7 +35,7 @@ for line in lines:
 	dwg.add(dwg.text(line,
 		insert = (imageW/2, imageH/2 + textSize*.25	),
 		text_anchor = 'middle',
-		fill = 'black',
+		fill = 'purple',
 		font_size = str(textSize),
 		font_family = 'Arial'
 		))
@@ -43,5 +43,5 @@ for line in lines:
 	# Save file
 	dwg.save()
 	count += 1
-
-# TODO: Convert SVG to image file
+	
+	# TODO: Convert SVG to image file
