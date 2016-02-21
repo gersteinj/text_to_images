@@ -1,9 +1,7 @@
-import PIL
+# import PIL
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
-print('svg')
-print('pillow')
 
 # Create relevant variables
 prefix = 'test'
@@ -25,6 +23,7 @@ for line in lines:
     # word? Look at PIL's Image.rotate()
 
     print(len(line))
+    line2 = '  ' + line + '  '
     imageW = len(line) * letterSize
     imageH = letterSize * 2
 
@@ -36,8 +35,8 @@ for line in lines:
 
     # Draw text
     draw = ImageDraw.Draw(img)
-    draw.text((0, 0), line, font=fnt, fill='white')
+    draw.text((0, 0), line2, font=fnt, fill='white')
 
     # Save file
-    img.save(str(count)+'.png')
+    img.save(prefix + str(count)+'.png')
     count += 1
