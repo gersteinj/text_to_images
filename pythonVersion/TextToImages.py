@@ -14,28 +14,29 @@ wordList = open('wordlist.txt')
 words = wordList.read()
 lines = words.splitlines()
 
+# TODO: set font size
+fnt = ImageFont.truetype('LinBiolinum_Rah.ttf', int(textSize))
+
 # Grab the next string
 for line in lines:
     print(line)
 
     # Set size variables based on length of word
     # TODO: Can I figure out a way to do it based on the actual width of the
-    # word? Look at PIL's Image.rotate()
+    # word? OMG YES TEXTSIZE
 
-    print(len(line))
-    line2 = '  ' + line + '  '
+    # print(len(line))
+    line = '  ' + line + '  '
     imageW = len(line) * letterSize
-    imageH = letterSize * 2
+    imageH = letterSize * 1.5
 
     # create a new image
-    img = Image.new("RGB", (int(imageW), int(imageH)), (200, 50, 255))
-
-    # TODO: set font size
-    fnt = ImageFont.truetype('LinBiolinum_Rah.ttf', int(textSize))
+    img = Image.new("RGB", (int(imageW), int(imageH)), (200, 255, 255))
 
     # Draw text
     draw = ImageDraw.Draw(img)
-    draw.text((0, 0), line2, font=fnt, fill='white')
+    x, y = draw.textsize(line, font=fnt)
+    draw.text(((imageW-x)/2, 0), line, font=fnt, fill='black')
 
     # Save file
     img.save(prefix + str(count)+'.png')
