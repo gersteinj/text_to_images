@@ -1,6 +1,22 @@
+<<<<<<< HEAD
 import controlP5.*;
+=======
+///////////////////////////////////////////////////
+//                                               //
+// Text to Images created by Jacqueline Gerstein //
+//   GersteinJ@gmail.com            @gersteinj   //
+//                                               //
+///////////////////////////////////////////////////
+
+>>>>>>> pythonVersion
 
 //Change values to change settings
+
+//Replace "text" with whatever you want the name of the files to be
+//Make sure your filename is in quotes
+//Files will be named in the following format: name + number + .png
+String fileName = "text";
+
 //Height of text in pixels
 int sizeOfText = 60;
 
@@ -8,8 +24,9 @@ int sizeOfText = 60;
 int graphicW = 300;
 int graphicH = 200;
 
-color textColor = color(0, 80, 50);
-color bgColor = color(255);
+//Colors of text and background, given as (red, green, blue). Default is black text on white background
+color textColor = color(0, 0, 0);
+color bgColor = color(255, 255, 255);
 
 
 //Create array to store word list
@@ -58,7 +75,7 @@ void draw() {
     graphic.endDraw();
 
     //save the image
-    graphic.save("text"+count+".png");
+    graphic.save(fileName+nf(count, 4)+".png");
 
     //increase index
     count++;
