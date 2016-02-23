@@ -1,18 +1,24 @@
 import tkinter
 import tkinter.colorchooser
+backColor = (255, 255, 255)
+textColor = (0, 0, 0)
 
 root = tkinter.Tk(className="GuiTest")      # Creates root window
 title = tkinter.Label(root, text="Text to Images", font=("Helvetica", 18))
 title.pack()
-dirs = tkinter.Message(root, text="Choose your settings, then choose your file. When you're ready, click the \"Process\" button.", width = 600)
-dirs.pack()
 
 
-def getColor():
+def setBackColor():
+    global backColor
+    backColor = tkinter.colorchooser.askcolor()
+    print(backColor)
+
+
+def setTextColor():
     global textColor
-    color = tkinter.colorchooser.askcolor()
-    print(color)
-    return color
+    textColor = tkinter.colorchooser.askcolor()
+    print(textColor)
 
-tkinter.Button(text='Select Color', command=getColor).pack()
-tkinter.mainloop()
+tkinter.Button(text='Background', command=setBackColor).pack()
+tkinter.Button(text='Text Color', command=setTextColor).pack()
+root.mainloop()
