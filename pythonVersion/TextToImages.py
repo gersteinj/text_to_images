@@ -3,10 +3,14 @@ from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
 import logging
+import easygui as gui
 
 logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
 
 logging.debug('Start of program')
+
+# Show Directions
+gui.msgbox('Choose a list of words')
 
 # Create relevant variables
 # Setting these as variables will help when I add a GUI
@@ -14,8 +18,12 @@ prefix = 'test'
 textSize = 75
 count = 1
 
+# Get file location
+filename = gui.fileopenbox()
+logging.debug(filename)
+
 # Load strings from a list
-wordList = open('wordlist.txt')
+wordList = open(filename)
 words = wordList.read()
 lines = words.splitlines()
 
