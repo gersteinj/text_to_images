@@ -2,42 +2,47 @@
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
+import logging
+
+logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+
+logging.debug('Start of program')
 
 # Create relevant variables
+# Setting these as variables will help when I add a GUI
 prefix = 'test'
 textSize = 75
 count = 1
-letterSize = textSize * .75
 
 # Load strings from a list
 wordList = open('wordlist.txt')
 words = wordList.read()
 lines = words.splitlines()
 
-# TODO: set font size
+# Set font size
 fnt = ImageFont.truetype('LinBiolinum_Rah.ttf', int(textSize))
 
 # Grab the next string
 for line in lines:
-    print(line)
-
-    # Set size variables based on length of word
-    # TODO: Can I figure out a way to do it based on the actual width of the
-    # word? OMG YES TEXTSIZE
+    logging.debug(line)
 
     # print(len(line))
-    line = '  ' + line + '  '
-    imageW = len(line) * letterSize
-    imageH = letterSize * 1.5
+    fullLine = '  ' + line + '  '
+    logging.debug(fullLine)
 
     # create a new image
-    img = Image.new("RGB", (int(imageW), int(imageH)), (200, 255, 255))
+    img = Image.new("RGB", (10, 10), (255, 255, 255))
 
     # Draw text
+    # Create a draw object
     draw = ImageDraw.Draw(img)
-    x, y = draw.textsize(line, font=fnt)
-    draw.text(((imageW-x)/2, 0), line, font=fnt, fill='black')
+    # Use textsize to calculate size of text
+    w, h = draw.textsize(fullLine, font=fnt)
+    # Resize Image to fit text (find a way with less backtracking!)
+    newImg = img.resize((w, int(h * 1.2)))
+    newDraw = ImageDraw.Draw(newImg)
+    newDraw.text((0, 0), fullLine, font=fnt, fill='black')
 
     # Save file
-    img.save(prefix + str(count)+'.png')
+    newImg.save(prefix + str(count) + '.png')
     count += 1
