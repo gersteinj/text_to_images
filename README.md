@@ -2,7 +2,7 @@
 
 ## Important Message
 * Please do not distribute this program yourself. If you have friends who want to use it, please direct them here so they can get the updated version as I continue to improve it. You can send them to this page or to my [website](http://www.robotsinheels.com), which has a link to access this page as well. The user interface is about the most minimal possible just to get it working - improvements are coming!
-* I haven't had time to test in Linux yet, and I don't have a Mac to test on, but both operating systems should work. Please let me know if they don't.
+* This version is Windows only. I'll post a Linux version soon. Sorry to the OSX users out there - I can't compile it for you without access to a Mac. If you want to use it and don't have access to Windows, let me know - there's a way to use it, it's just a lot less convenient.
 * If you have questions or suggestions, please reach out to me at gersteinj@gmail.com or as @gersteinj on Twitter. Feel free to get hold of me here, too, if you're comfortable with Git/GitHub.
 
 ## Getting Started

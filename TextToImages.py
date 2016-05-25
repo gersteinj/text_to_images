@@ -14,7 +14,7 @@ introMessage = '''
 Welcome to Text to Images, a tool for creating magnetic poetry images.
 
 This is still a work in progress, with more features and a better interface under development. 
-The tool should work under Windows, OSX, and Linux, but is only tested under Windows so far. 
+The current version is Windows only. Linux is coming soon, but I'll need access to a Mac to create the OSX version. 
 
 Please do not distribute this application yourself - it can't check for updates, so the only way to get the most updated version is to download it directly. 
 A link to the current version will always be available at www.robotsinheels.com.
@@ -24,15 +24,20 @@ If you have questions or suggestions, please reach out to me at gersteinj@gmail.
 To use Text to Images, you'll need to select a word list, a location to save your images, and a name to use for the files (the program will automatically add numbers to the end of the filename).
 
 The default settings are black text on a white background. If you want to change that, choose yes when asked about changing settings.
+Color names are standard named HTML colors. A list can be found at http://www.w3schools.com/colors/colors_names.asp
 '''
 
 # Show Directions
 gui.msgbox(introMessage)
 
-# Create relevant variables
-# Setting these as variables will help when I add a GUI
-prefix = 'MagneticPoetry'
+# Default settings
+useDefaults = True
 textSize = 75
+bgColor = 'white'
+textColor = 'black'
+
+# Other variables
+prefix = 'MagneticPoetry'
 count = 1
 
 # Get file location
@@ -64,7 +69,7 @@ for line in lines:
     logging.debug(fullLine)
 
     # create a new image
-    img = Image.new("RGB", (10, 10), (255, 255, 255))
+    img = Image.new("RGB", (10, 10), bgColor)
 
     # Draw text
     # Create a draw object
@@ -74,7 +79,7 @@ for line in lines:
     # Resize Image to fit text (find a way with less backtracking!)
     newImg = img.resize((w, int(h * 1.2)))
     newDraw = ImageDraw.Draw(newImg)
-    newDraw.text((0, 0), fullLine, font=fnt, fill='black')
+    newDraw.text((0, 0), fullLine, font=fnt, fill=textColor)
 
     # Save file
     newImg.save(os.path.join(savepath, (prefix + str(count) + '.png')))
