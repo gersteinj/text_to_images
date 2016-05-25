@@ -4,23 +4,32 @@ from PIL import ImageDraw
 from PIL import ImageFont
 import logging
 import easygui as gui
+import os
 
-logging.basicConfig(level=logging.DEBUG, format='%(asctime)s - %(levelname)s - %(message)s')
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 logging.debug('Start of program')
 
 # Show Directions
-gui.msgbox('Choose a list of words')
+gui.msgbox('Choose a list of words and a save location')
 
 # Create relevant variables
 # Setting these as variables will help when I add a GUI
-prefix = 'test'
+prefix = 'MagneticPoetry'
 textSize = 75
 count = 1
 
 # Get file location
-filename = gui.fileopenbox()
-logging.debug(filename)
+filename = gui.fileopenbox(msg='Pick your word list', title='File selection')
+logging.info('Your word list is %s' % filename)
+
+# Get save location
+savepath = gui.diropenbox(title='Choose save location')
+logging.info('Save files in %s' % savepath)
+
+# Choose base file name
+prefix = gui.enterbox(msg='Choose a prefix for your file names', default='MagneticPoetry')
+logging.info('Saving files as %s with numerical suffixes' % prefix)
 
 # Load strings from a list
 wordList = open(filename)
@@ -32,7 +41,7 @@ fnt = ImageFont.truetype('LinBiolinum_Rah.ttf', int(textSize))
 
 # Grab the next string
 for line in lines:
-    logging.debug(line)
+    logging.info('Next line is %s' % line)
 
     # print(len(line))
     fullLine = '  ' + line + '  '
@@ -52,5 +61,5 @@ for line in lines:
     newDraw.text((0, 0), fullLine, font=fnt, fill='black')
 
     # Save file
-    newImg.save(prefix + str(count) + '.png')
+    newImg.save(os.path.join(savepath, (prefix + str(count) + '.png')))
     count += 1

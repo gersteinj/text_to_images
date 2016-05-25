@@ -2,7 +2,7 @@
 
 ## Important Message
 * Please do not distribute this program yourself. If you have friends who want to use it, please direct them here so they can get the updated version as I continue to improve it. You can send them to this page or to my [website](http://www.robotsinheels.com), which has a link to access this page as well. The user interface is about the most minimal possible just to get it working - improvements are coming!
-
+* I haven't had time to test in Linux yet, and I don't have a Mac to test on, but both operating systems should work. Please let me know if they don't.
 * If you have questions or suggestions, please reach out to me at gersteinj@gmail.com or as @gersteinj on Twitter. Feel free to get hold of me here, too, if you're comfortable with Git/GitHub.
 
 ## Getting Started
@@ -10,7 +10,8 @@
 * Download the TextToImages.exe file
 * Run the file. You may get a command line popping up, that's okay.
 * Select your word list
-* Your files will be located in the folder the TextToImages.exe file is located in
+* Select the folder you want to save your images in
+* When asked, type in a file name you want to use. Each image will be followed by a number
 
 ## Preparing Your Word List
 * You'll need a text file with each word/phrase on a single line. If that made sense, you can skip the rest of this section and just set up your file. Otherwise, the next few steps are for you.
@@ -19,4 +20,4 @@
 * Save your file somewhere that you can find it again..
 
 ## Settings
-* Settings will be back once the new version is updated with a better interface
+* Settings beyond file name will be available shortly
