@@ -9,9 +9,7 @@
 * This is still very much in development and directions will be changing.
 * Download the [TextToImages.exe](https://github.com/gersteinj/text_to_images/blob/master/dist/TextToImages.exe) file by clicking on the link and choosing "View Raw"
 * Run the file. You may get a command line popping up, that's okay.
-* Select your word list
-* Select the folder you want to save your images in
-* When asked, type in a file name you want to use. Each image will be followed by a number
+* Further directions will be displayed by the program
 
 ## Preparing Your Word List
 * You'll need a text file with each word/phrase on a single line. If that made sense, you can skip the rest of this section and just set up your file. Otherwise, the next few steps are for you.
