@@ -4,7 +4,7 @@ block_cipher = None
 
 
 a = Analysis(['TextToImages.py'],
-             pathex=['C:\\Users\\gerst\\Documents\\github\\text_to_images\\pythonVersion'],
+             pathex=['C:\\Users\\gerst\\Documents\\github\\text_to_images'],
              binaries=None,
              datas=None,
              hiddenimports=[],
