@@ -7,7 +7,7 @@
 
 ## Getting Started
 * This is still very much in development and directions will be changing.
-* Download the TextToImages.exe file
+* [Download the TextToImages.exe file](https://github.com/gersteinj/text_to_images/blob/master/dist/TextToImages.exe)
 * Run the file. You may get a command line popping up, that's okay.
 * Select your word list
 * Your files will be located in the folder the TextToImages.exe file is located in
