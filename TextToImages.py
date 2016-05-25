@@ -31,7 +31,7 @@ Color names are standard named HTML colors. A list can be found at http://www.w3
 gui.msgbox(introMessage)
 
 # Default settings
-useDefaults = True
+advancedSettings = False
 textSize = 75
 bgColor = 'white'
 textColor = 'black'
@@ -51,6 +51,21 @@ logging.info('Save files in %s' % savepath)
 # Choose base file name
 prefix = gui.enterbox(msg='Choose a prefix for your file names', default='MagneticPoetry')
 logging.info('Saving files as %s with numerical suffixes' % prefix)
+
+# Use advanced settings?
+advancedSettings = gui.ynbox(msg='Use advanced settings?')
+logging.info('Advanced settings: %s' % advancedSettings)
+
+# If Advanced Settings are used, pop up box to ask for font size and colors
+if advancedSettings == True:
+    # TODO: Set variables
+    # Set text size
+    textSize = gui.integerbox(msg='Set font size', default=75, lowerbound = 10, upperbound = 300)
+    logging.info('Setting text size to %s' % textSize)
+    # Set colors
+    textColor = gui.enterbox(msg='Choose your text color using standard named HTML colors', strip=True, default='black')
+    bgColor = gui.enterbox(msg='Choose your background color using standard named HTML colors', strip=True, default='white')
+
 
 # Load strings from a list
 wordList = open(filename)
