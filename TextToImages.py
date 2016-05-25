@@ -10,8 +10,24 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 
 logging.debug('Start of program')
 
+introMessage = '''
+Welcome to Text to Images, a tool for creating magnetic poetry images.
+
+This is still a work in progress, with more features and a better interface under development. 
+The tool should work under Windows, OSX, and Linux, but is only tested under Windows so far. 
+
+Please do not distribute this application yourself - it can't check for updates, so the only way to get the most updated version is to download it directly. 
+A link to the current version will always be available at www.robotsinheels.com.
+
+If you have questions or suggestions, please reach out to me at gersteinj@gmail.com or as @gersteinj on twitter.
+
+To use Text to Images, you'll need to select a word list, a location to save your images, and a name to use for the files (the program will automatically add numbers to the end of the filename).
+
+The default settings are black text on a white background. If you want to change that, choose yes when asked about changing settings.
+'''
+
 # Show Directions
-gui.msgbox('Choose a list of words and a save location')
+gui.msgbox(introMessage)
 
 # Create relevant variables
 # Setting these as variables will help when I add a GUI
