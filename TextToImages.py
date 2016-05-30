@@ -23,7 +23,7 @@ If you have questions or suggestions, please reach out to me at gersteinj@gmail.
 
 To use Text to Images, you'll need to select a word list, a location to save your images, and a name to use for the files (the program will automatically add numbers to the end of the filename).
 
-The default settings are black text on a white background. If you want to change that, choose yes when asked about changing settings.
+The default settings are black text on a white background with all file names being a base name followed by numbers. If you want to change that, choose yes when asked about changing settings.
 Color names are standard named HTML colors. A list can be found at http://www.w3schools.com/colors/colors_names.asp
 '''
 
@@ -32,6 +32,7 @@ gui.msgbox(introMessage)
 
 # Default settings
 advancedSettings = False
+standardNames = True
 textSize = 75
 bgColor = 'white'
 textColor = 'black'
@@ -49,7 +50,7 @@ savepath = gui.diropenbox(title='Choose save location')
 logging.info('Save files in %s' % savepath)
 
 # Choose base file name
-prefix = gui.enterbox(msg='Choose a prefix for your file names', default='MagneticPoetry')
+prefix = gui.enterbox(msg='Choose a prefix for your file names. This setting can be overridden in advanced settings to name files for their contents.', default='MagneticPoetry')
 logging.info('Saving files as %s with numerical suffixes' % prefix)
 
 # Use advanced settings?
@@ -58,14 +59,16 @@ logging.info('Advanced settings: %s' % advancedSettings)
 
 # If Advanced Settings are used, pop up box to ask for font size and colors
 if advancedSettings == True:
-    # TODO: Set variables
     # Set text size
     textSize = gui.integerbox(msg='Set font size', default=75, lowerbound = 10, upperbound = 300)
     logging.info('Setting text size to %s' % textSize)
     # Set colors
     textColor = gui.enterbox(msg='Choose your text color using standard named HTML colors', strip=True, default='black')
     bgColor = gui.enterbox(msg='Choose your background color using standard named HTML colors', strip=True, default='white')
-
+    logging.info('\nForeground is %s\nBackground is %s' % (textColor, bgColor))
+    # Filename settings
+    standardNames = gui.ynbox(msg='Would you prefer standardized filenames (myname001, myname002, myname003...) or to use the content of the image as your file name?', choices=('Standard names', 'Content names'))
+    logging.info('Standard names: %s' % standardNames)
 
 # Load strings from a list
 wordList = open(filename)
@@ -97,5 +100,8 @@ for line in lines:
     newDraw.text((0, 0), fullLine, font=fnt, fill=textColor)
 
     # Save file
-    newImg.save(os.path.join(savepath, (prefix + str(count) + '.png')))
+    if standardNames == True:
+        newImg.save(os.path.join(savepath, (prefix + str(count) + '.png')))
+    else:
+        newImg.save(os.path.join(savepath, (line + '.png')))
     count += 1
