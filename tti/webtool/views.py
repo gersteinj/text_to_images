@@ -76,3 +76,8 @@ def selected_word(request, sent_word):
 	new_img.save(response, 'PNG')
 
 	return response
+
+def tti(request):
+	template_name = 'webtool/tti.html'
+	# return HttpResponse("tti")
+	return render(request, "webtool/tti.html")
