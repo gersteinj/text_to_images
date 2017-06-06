@@ -1,1 +1,7 @@
 <h1>hi</h1>
+
+<form action="/tti/download" method="post">
+	{% csrf_token %}
+	{{ form }}
+	<input type="submit" value="Submit" />
+</form>

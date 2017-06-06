@@ -3,6 +3,8 @@ from django.http import HttpResponse
 
 import os
 
+from .forms import TTIForm
+
 from PIL import Image
 from PIL import ImageDraw
 from PIL import ImageFont
@@ -78,6 +80,20 @@ def selected_word(request, sent_word):
 	return response
 
 def tti(request):
+	# if this is a POST request we need to process form data
+	if request.method == 'POST':
+		# create a form instance and populate it with data from the request
+		form = TTIForm(request.POST)
+		# check whether it's valid:
+		if form.is_valid():
+			# process the data in form.cleaned_data as required
+			# ...
+			# redirect to a new URL:
+			return HttpResponseRedirect('/download/')
+
+	# if a GET (or any other method) we'll create a blank form
+	else:
+		form = TTIForm()
+
 	template_name = 'webtool/tti.html'
-	# return HttpResponse("tti")
-	return render(request, "webtool/tti.html")
+	return render(request, template_name, {'form': TTIForm()})

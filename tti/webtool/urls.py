@@ -9,4 +9,5 @@ urlpatterns = [
 	url(r'^wordimage/$', views.word_image, name='word_image'),
 	url(r'^chooseword/(?P<sent_word>[a-zZ-Z0-9]+)/$', views.selected_word, name='selected_word'),
 	url(r'^tti/$', views.tti, name='tti'),
+	# url(r'^download/$', views)
 ]
