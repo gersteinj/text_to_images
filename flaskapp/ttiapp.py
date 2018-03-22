@@ -9,7 +9,7 @@ def page_not_found(error):
 @app.route('/')
 def hello_world():
     # return render_template('index.html')
-    return "Welcome to Text to Images"
+    return "Welcome to Text to Images!"
 
 def make_magnet(word, sz):
 # Set font and other variables
@@ -62,5 +62,11 @@ def tti(word, sz=30):
 
     # save and return file
     # TODO: figure out how to create file in memory
-    img.save('test.png')
-    return send_file('test.png', mimetype='image/gif')
+    # img.save('test.png')
+    return send_file(img, mimetype='image/png')
+
+@app.route('/ttimulti/<words>')
+def tti_multi(words):
+    word_list = words.split('-')
+    # return word_list[0]
+    return '|'.join(word_list)
