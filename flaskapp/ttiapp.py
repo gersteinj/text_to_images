@@ -62,11 +62,13 @@ def tti(word, sz=30):
 
     # save and return file
     # TODO: figure out how to create file in memory
-    # img.save('test.png')
-    return send_file(img, mimetype='image/png')
+    img.save('test.png')
+    return send_file('test.png', mimetype='image/png')
 
 @app.route('/ttimulti/<words>')
-def tti_multi(words):
+@app.route('/ttimulti/<words>/<i>')
+def tti_multi(words, i=0):
     word_list = words.split('-')
-    # return word_list[0]
-    return '|'.join(word_list)
+    images = [make_magnet(word, 30) for word in word_list]
+    images[int(i)].save('multi.png')
+    return send_file('multi.png', mimetype='image/png')
