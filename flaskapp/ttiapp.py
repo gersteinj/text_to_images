@@ -37,7 +37,7 @@ def make_magnet(word, sz):
 
 @app.route('/tti/<word>')
 @app.route('/tti/<word>/<sz>')
-def tti(word, sz=30):
+def tti(word, sz=40):
     byte_io = BytesIO()
     make_magnet(word, sz).save(byte_io, 'PNG')
     byte_io.seek(0)
