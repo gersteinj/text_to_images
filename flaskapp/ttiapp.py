@@ -1,5 +1,6 @@
 from flask import Flask, render_template, send_file
 from PIL import Image, ImageDraw, ImageFont
+from io import BytesIO
 app = Flask(__name__)
 
 @app.errorhandler(404)
@@ -37,33 +38,10 @@ def make_magnet(word, sz):
 @app.route('/tti/<word>')
 @app.route('/tti/<word>/<sz>')
 def tti(word, sz=30):
-    # # Set font and other variables
-    # fnt = ImageFont.truetype('LinBiolinum_Rah.ttf', int(sz))
-    # word = '  ' + word + '  '
-    # bg_color = 'white'
-    # text_color = 'black'
-
-    # # create a new image
-    # img = Image.new("RGB", (10, 10), bg_color)
-
-    # # draw text
-    # # create a draw object
-    # draw = ImageDraw.Draw(img)
-
-    # # use textsize to find size of text
-    # w, h = draw.textsize(word, font=fnt)
-    
-    # # resize image to fit text
-    # img = img.resize((w, int(h*1.2)))
-    # draw = ImageDraw.Draw(img)
-    # draw.text((0,0), word, font=fnt, fill=text_color)
-    
-    img = make_magnet(word, sz)
-
-    # save and return file
-    # TODO: figure out how to create file in memory
-    img.save('test.png')
-    return send_file('test.png', mimetype='image/png')
+    byte_io = BytesIO()
+    make_magnet(word, sz).save(byte_io, 'PNG')
+    byte_io.seek(0)
+    return send_file(byte_io, mimetype='image/png')
 
 @app.route('/ttimulti/<words>')
 @app.route('/ttimulti/<words>/<i>')
@@ -75,10 +53,6 @@ def tti_multi(words, i=0):
     with open('multi.png') as f:
         return render_template('ttimulti.html', magnet=f)
 
-@app.route('/templating/<pic>')
-def templating(pic):
-    return render_template('templating.html', myvar=pic)
-
-@app.route('/dynamic/<color>')
-def dynamic_images(color):
-    return color
+# @app.route('/templating/<pic>')
+# def templating(pic):
+#     return render_template('templating.html', myvar=pic)
