@@ -71,4 +71,14 @@ def tti_multi(words, i=0):
     word_list = words.split('-')
     images = [make_magnet(word, 30) for word in word_list]
     images[int(i)].save('multi.png')
-    return send_file('multi.png', mimetype='image/png')
+    # return send_file('multi.png', mimetype='image/png')
+    with open('multi.png') as f:
+        return render_template('ttimulti.html', magnet=f)
+
+@app.route('/templating/<pic>')
+def templating(pic):
+    return render_template('templating.html', myvar=pic)
+
+@app.route('/dynamic/<color>')
+def dynamic_images(color):
+    return color
