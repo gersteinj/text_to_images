@@ -2,6 +2,7 @@ from flask import Flask, render_template, send_file
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 app = Flask(__name__)
+# app.config['SECRET_KEY']='change-this-before-publishing'
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -45,13 +46,9 @@ def tti(word, sz=40):
 
 @app.route('/ttimulti/<words>')
 @app.route('/ttimulti/<words>/<i>')
-def tti_multi(words, i=0):
+def tti_multi(words):
     word_list = words.split('-')
-    images = [make_magnet(word, 30) for word in word_list]
-    images[int(i)].save('multi.png')
-    # return send_file('multi.png', mimetype='image/png')
-    with open('multi.png') as f:
-        return render_template('ttimulti.html', magnet=f)
+    return render_template('ttimulti.html', words=word_list)
 
 # @app.route('/templating/<pic>')
 # def templating(pic):
