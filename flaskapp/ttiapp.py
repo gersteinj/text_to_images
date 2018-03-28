@@ -67,6 +67,7 @@ def tti_multi(words):
 def submit_words():
     form = WordsForm()
     if form.validate_on_submit():
-        flash('You submitted!')
-        return redirect(url_for('home'))
+        w = form.word.data
+        flash('You submitted {}'.format(w))
+        return redirect(url_for('tti', word=w))
     return render_template('formpage.html', form=form, title="Make magnets")
