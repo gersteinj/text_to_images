@@ -1,8 +1,16 @@
-from flask import Flask, render_template, send_file
+from flask import Flask, render_template, send_file, flash, redirect
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
+from flask_wtf import FlaskForm
+from wtforms import StringField, SubmitField
+from wtforms.validators import DataRequired
+
 app = Flask(__name__)
-# app.config['SECRET_KEY']='change-this-before-publishing'
+app.config['SECRET_KEY']='change-this-before-publishing'
+
+class WordsForm(FlaskForm):
+    word = StringField('Word', validators=[DataRequired()])
+    submit = SubmitField('Make Magnet')
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -53,3 +61,11 @@ def tti_multi(words):
 # @app.route('/templating/<pic>')
 # def templating(pic):
 #     return render_template('templating.html', myvar=pic)
+
+@app.route('/formtest', methods=['GET', 'POST'])
+def submit_words():
+    form = WordsForm()
+    if form.validate_on_submit():
+        flash('You submitted!')
+        return redirect('/')
+    return render_template('formpage.html', form=form, title="Make magnets")
