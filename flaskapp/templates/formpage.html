@@ -11,6 +11,20 @@
             {% endfor %}
         </p>
         <p>
+            {{ form.text_color.label }}<br>
+            {{ form.text_color}}<br>
+            {% for error in form.text_color.errors %}
+            <span style="color:red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
+            {{ form.bg_color.label }}<br>
+            {{ form.bg_color}}<br>
+            {% for error in form.bg_color.errors %}
+            <span style="color:red;">{{ error }}</span>
+            {% endfor %}
+        </p>
+        <p>
             {{ form.submit() }}
         </p>
     </form>

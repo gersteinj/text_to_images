@@ -2,14 +2,20 @@ from flask import Flask, render_template, send_file, flash, redirect, url_for
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField
+from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='change-this-before-publishing'
 
+colors = [('Black', 'black'), ('Gray', 'gray'), ('White', 'white'), ('Red', 'red'), ('Orange', 'orange'), ('Yellow', 'yellow'), ('Lime', 'lime'), ('Blue', 'blue'), ('Cyan', 'aqua'), ('Fuchsia', 'fuchsia'), ('Purple', 'purple')]
+
 class WordsForm(FlaskForm):
     word = StringField('Word', validators=[DataRequired()])
+    text_color = StringField('Text color', validators=[DataRequired()])
+    bg_color = StringField('Background color', validators=[DataRequired()])
+    # text_color = SelectField('text color', choices=colors)
+    # bg_color = SelectField('background color', choices=colors)
     submit = SubmitField('Make Magnet')
 
 @app.errorhandler(404)
@@ -45,8 +51,9 @@ def make_magnet(word, sz, foreground, background):
     return img
 
 @app.route('/tti/<word>')
-@app.route('/tti/<word>/<sz>')
-@app.route('/tti/<word>/<sz>/<foreground>/<background>')
+# @app.route('/tti/<word>/<sz>')
+# @app.route('/tti/<word>/<sz>/<foreground>/<background>')
+@app.route('/tti/?word=<word>&sz=<sz>&foreground=<foreground>&background=<background>')
 def tti(word, sz=40, foreground='black', background='white'):
     byte_io = BytesIO()
     make_magnet(word, sz, foreground, background).save(byte_io, 'PNG')
@@ -68,7 +75,9 @@ def tti_multi(words):
 def submit_words():
     form = WordsForm()
     if form.validate_on_submit():
-        w = form.word.data
-        flash('You submitted {}'.format(w))
-        return redirect(url_for('tti', word=w))
+        word = form.word.data
+        bg = form.bg_color.data
+        fill = form.text_color.data
+        flash('You submitted {}'.format(word))
+        return redirect(url_for('tti', word=word, foreground=fill, background=bg, sz=50))
     return render_template('formpage.html', form=form, title="Make magnets")
