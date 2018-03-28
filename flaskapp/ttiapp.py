@@ -21,12 +21,12 @@ def home():
     # return render_template('index.html')
     return render_template('home.html')
 
-def make_magnet(word, sz):
+def make_magnet(word, sz, foreground, background):
 # Set font and other variables
     fnt = ImageFont.truetype('LinBiolinum_Rah.ttf', int(sz))
     word = '  ' + word + '  '
-    bg_color = 'white'
-    text_color = 'black'
+    bg_color = background
+    text_color = foreground
 
     # create a new image
     img = Image.new("RGB", (10, 10), bg_color)
@@ -46,9 +46,10 @@ def make_magnet(word, sz):
 
 @app.route('/tti/<word>')
 @app.route('/tti/<word>/<sz>')
-def tti(word, sz=40):
+@app.route('/tti/<word>/<sz>/<foreground>/<background>')
+def tti(word, sz=40, foreground='black', background='white'):
     byte_io = BytesIO()
-    make_magnet(word, sz).save(byte_io, 'PNG')
+    make_magnet(word, sz, foreground, background).save(byte_io, 'PNG')
     byte_io.seek(0)
     return send_file(byte_io, mimetype='image/png')
     # return render_template('ttisingle.html', picture=byte_io)
