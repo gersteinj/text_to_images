@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_file, flash, redirect
+from flask import Flask, render_template, send_file, flash, redirect, url_for
 from PIL import Image, ImageDraw, ImageFont
 from io import BytesIO
 from flask_wtf import FlaskForm
@@ -17,9 +17,9 @@ def page_not_found(error):
     return '404 page not found', 404
 
 @app.route('/')
-def hello_world():
+def home():
     # return render_template('index.html')
-    return "Welcome to Text to Images!"
+    return render_template('home.html')
 
 def make_magnet(word, sz):
 # Set font and other variables
@@ -51,6 +51,7 @@ def tti(word, sz=40):
     make_magnet(word, sz).save(byte_io, 'PNG')
     byte_io.seek(0)
     return send_file(byte_io, mimetype='image/png')
+    # return render_template('ttisingle.html', picture=byte_io)
 
 @app.route('/ttimulti/<words>')
 @app.route('/ttimulti/<words>/<i>')
@@ -67,5 +68,5 @@ def submit_words():
     form = WordsForm()
     if form.validate_on_submit():
         flash('You submitted!')
-        return redirect('/')
+        return redirect(url_for('home'))
     return render_template('formpage.html', form=form, title="Make magnets")

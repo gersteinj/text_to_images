@@ -1,12 +1,19 @@
-<!doctype html>
-<body>
+{% extends "base.html" %}
+
+{% block content %}
     <form action="" method="post">
         {{ form.hidden_tag() }}
         <p>
-            {{ form.word(size=50) }}
+            {{ form.word.label }}<br>
+            {{ form.word(size=50) }}<br>
+            {% for error in form.word.errors %}
+            <span style="color:red;">{{ error }}</span>
+            {% endfor %}
         </p>
         <p>
             {{ form.submit() }}
         </p>
     </form>
-</body>
+
+{% endblock  %}
+    
