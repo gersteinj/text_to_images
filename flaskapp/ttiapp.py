@@ -4,6 +4,8 @@ from io import BytesIO
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField, SelectField
 from wtforms.validators import DataRequired
+import zipfile
+
 
 app = Flask(__name__)
 app.config['SECRET_KEY']='change-this-before-publishing'
@@ -59,12 +61,16 @@ def tti(word, sz=40, foreground='black', background='white'):
     make_magnet(word, sz, foreground, background).save(byte_io, 'PNG')
     byte_io.seek(0)
     return send_file(byte_io, mimetype='image/png')
-    # return render_template('ttisingle.html', picture=byte_io)
 
 @app.route('/ttimulti/<words>')
-@app.route('/ttimulti/<words>/<i>')
 def tti_multi(words):
     word_list = words.split('-')
+    with zipfile.ZipFile('test.zip', 'w') as zf:
+        for word in word_list:
+            n = str(word + '.txt')
+            with open(n, 'w') as f:
+                f.write(word)
+                zf.write(n)
     return render_template('ttimulti.html', words=word_list)
 
 # @app.route('/templating/<pic>')
