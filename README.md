@@ -19,3 +19,6 @@
 
 ## Settings
 * Settings beyond file name will be available shortly
+
+## Web app
+Web app will hopefully be ready in May.
