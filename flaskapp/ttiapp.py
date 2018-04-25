@@ -67,10 +67,14 @@ def tti_multi(words):
     word_list = words.split('-')
     with zipfile.ZipFile('test.zip', 'w') as zf:
         for word in word_list:
-            n = str(word + '.txt')
-            with open(n, 'w') as f:
-                f.write(word)
-                zf.write(n)
+            temp = BytesIO()
+            make_magnet(word, 40, 'black', 'white').save(temp, 'png')
+            temp.seek(0)
+            zf.write(temp)
+            # n = str(word + '.txt')
+            # with open(n, 'w') as f:
+            #     f.write(word)
+            #     zf.write(n)
     return render_template('ttimulti.html', words=word_list)
 
 # @app.route('/templating/<pic>')
